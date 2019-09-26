@@ -1,9 +1,39 @@
-// set values into an object with the same name as the parameters
 
 
-// Consistency is King
-// Clear, searchable, & obvious
-// Var names that make sense
+
+
+
+
+
+
+
+// Immutable vs Mutable
+// can't be changed vs can be changed
+// isn't changed vs changed
+
+// Pure Functions
+// Always return the same thing, with the same input
+
+
+// Pure
+// Easier to test and control
+const addTwo = (x) => x + 2;
+console.log(addTwo(2));
+console.log(addTwo(3));
+console.log(addTwo(4));
+
+// Not Pure!
+let multi = 10 // External State
+const addThree = (x) => { x + multi };
+console.log(addThree(2));
+multi = 11;
+console.log(addThree(2));
+multi = 12;
+console.log(addThree(2));
+
+
+let name = "Scott";
+const fullName = name + " Tolinski";
 
 const BASE_SALARY = 1600;
 const SALARY_MULTIPLIER = 4;
@@ -25,16 +55,6 @@ const dev = makePerson({
   job: 'webdev'
 });
 
-// DO NOT DO
-// const hireDev = ({ devInfo }) => {
-//   const hiredDevInfo = {
-//     hired: true,
-//     ...devInfo
-//   }
-//   return hiredDevInfo
-// }
-
-// Correct
 const hireDev = ({ dev }) => {
   const hiredDev = {
     hired: true,
@@ -43,8 +63,6 @@ const hireDev = ({ dev }) => {
   return hiredDev;
 };
 
-// X const ytd = 100000;
-const salesYearToDate = 100000;
 
-console.log(hireDev({ dev }));
+//console.log(hireDev({ dev }));
 

@@ -124,10 +124,34 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// set values into an object with the same name as the parameters
-// Consistency is King
-// Clear, searchable, & obvious
-// Var names that make sense
+// Immutable vs Mutable
+// can't be changed vs can be changed
+// isn't changed vs changed
+// Pure Functions
+// Always return the same thing, with the same input
+// Pure
+// Easier to test and control
+var addTwo = function addTwo(x) {
+  return x + 2;
+};
+
+console.log(addTwo(2));
+console.log(addTwo(3));
+console.log(addTwo(4)); // Not Pure!
+
+var multi = 10; // External State
+
+var addThree = function addThree(x) {
+  x + multi;
+};
+
+console.log(addThree(2));
+multi = 11;
+console.log(addThree(2));
+multi = 12;
+console.log(addThree(2));
+var name = "Scott";
+var fullName = name + " Tolinski";
 var BASE_SALARY = 1600;
 var SALARY_MULTIPLIER = 4;
 
@@ -150,15 +174,7 @@ var dev = makePerson({
   lastName: 'tolinski',
   age: 32,
   job: 'webdev'
-}); // DO NOT DO
-// const hireDev = ({ devInfo }) => {
-//   const hiredDevInfo = {
-//     hired: true,
-//     ...devInfo
-//   }
-//   return hiredDevInfo
-// }
-// Correct
+});
 
 var hireDev = function hireDev(_ref2) {
   var dev = _ref2.dev;
@@ -168,13 +184,7 @@ var hireDev = function hireDev(_ref2) {
   }, dev);
 
   return hiredDev;
-}; // X const ytd = 100000;
-
-
-var salesYearToDate = 100000;
-console.log(hireDev({
-  dev: dev
-}));
+}; //console.log(hireDev({ dev }));
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
