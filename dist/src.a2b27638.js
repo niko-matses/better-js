@@ -118,7 +118,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 // set values into an object with the same name as the parameters
+// Consistency is King
+// Clear, searchable, & obvious
+// Var names that make sense
+var BASE_SALARY = 1600;
+var SALARY_MULTIPLIER = 4;
+
 var makePerson = function makePerson(_ref) {
   var firstName = _ref.firstName,
       lastName = _ref.lastName,
@@ -128,7 +140,8 @@ var makePerson = function makePerson(_ref) {
     name: firstName + ' ' + lastName,
     age: age,
     job: job,
-    lastName: lastName
+    lastName: lastName,
+    salary: BASE_SALARY * SALARY_MULTIPLIER
   };
 };
 
@@ -137,8 +150,31 @@ var dev = makePerson({
   lastName: 'tolinski',
   age: 32,
   job: 'webdev'
-});
-console.log(dev);
+}); // DO NOT DO
+// const hireDev = ({ devInfo }) => {
+//   const hiredDevInfo = {
+//     hired: true,
+//     ...devInfo
+//   }
+//   return hiredDevInfo
+// }
+// Correct
+
+var hireDev = function hireDev(_ref2) {
+  var dev = _ref2.dev;
+
+  var hiredDev = _objectSpread({
+    hired: true
+  }, dev);
+
+  return hiredDev;
+}; // X const ytd = 100000;
+
+
+var salesYearToDate = 100000;
+console.log(hireDev({
+  dev: dev
+}));
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
