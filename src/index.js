@@ -7,23 +7,15 @@ document.getElementById("app").innerHTML = `
 </div>
 `;
 
-// function declaration (Hoisted)
-// function sayHi() {
-//   return console.log('hi');
-// }
+const newArray = ['hi', 'niko', 'newItem', 'spreadftw']
 
-// Function Expression (Not hoisted)
-// Passed around or used
-// const sayHi = function () {
-//   return console.log('hi');
-// }
+const [a, b, ...c] = newArray;
 
-// const sayHi = function sayHi() {
-//   return console.log('hi');
-// };
+// const a = newArray[0];
+// const b = newArray[1];
 
-// Arrow function
+console.log(c);
+
 const sayHi = () => { console.log('hi'); }
-
 
 sayHi();
