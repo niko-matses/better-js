@@ -118,73 +118,52 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var cart = ["10", "5", "15"];
+var SHIPPING_COST = 10;
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-// Immutable vs Mutable
-// can't be changed vs can be changed
-// isn't changed vs changed
-// Pure Functions
-// Always return the same thing, with the same input
-// Pure
-// Easier to test and control
-var addTwo = function addTwo(x) {
-  return x + 2;
+var fakeAPICharge = function fakeAPICharge(total) {
+  return true;
 };
 
-console.log(addTwo(2));
-console.log(addTwo(3));
-console.log(addTwo(4)); // Not Pure!
-
-var multi = 10; // External State
-
-var addThree = function addThree(x) {
-  x + multi;
+var fakeSendRecipt = function fakeSendRecipt(total) {
+  return true;
 };
 
-console.log(addThree(2));
-multi = 11;
-console.log(addThree(2));
-multi = 12;
-console.log(addThree(2));
-var name = "Scott";
-var fullName = name + " Tolinski";
-var BASE_SALARY = 1600;
-var SALARY_MULTIPLIER = 4;
-
-var makePerson = function makePerson(_ref) {
-  var firstName = _ref.firstName,
-      lastName = _ref.lastName,
-      age = _ref.age,
-      job = _ref.job;
-  return {
-    name: firstName + ' ' + lastName,
-    age: age,
-    job: job,
-    lastName: lastName,
-    salary: BASE_SALARY * SALARY_MULTIPLIER
-  };
+var sendRecipt = function sendRecipt(_ref) {
+  var email = _ref.email,
+      total = _ref.total;
+  return fakeSendRecipt({
+    email: email,
+    total: total
+  });
 };
 
-var dev = makePerson({
-  firstName: 'scott',
-  lastName: 'tolinski',
-  age: 32,
-  job: 'webdev'
-});
+var getSubTotal = function getSubTotal(cart) {
+  return cart.reduce(function (tempTotal, item) {
+    return tempTotal + item;
+  });
+};
 
-var hireDev = function hireDev(_ref2) {
-  var dev = _ref2.dev;
+var getTotal = function getTotal(subTotal) {
+  return subTotal + SHIPPING_COST;
+};
 
-  var hiredDev = _objectSpread({
-    hired: true
-  }, dev);
+var checkout = function checkout(cart) {
+  var subTotal = getSubTotal(cart);
+  var total = getTotal(subTotal);
+  var orderSuccess = fakeAPICharge(total);
 
-  return hiredDev;
-}; //console.log(hireDev({ dev }));
+  if (orderSuccess) {
+    sendRecipt({
+      email: "fakeemail@gmail.com",
+      total: total
+    });
+  }
+
+  return orderSuccess;
+};
+
+checkout(cart);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
