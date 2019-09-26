@@ -118,20 +118,42 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-document.getElementById("app").innerHTML = "\n<h1>Hello Parcel!</h1>\n<div>\n  Look\n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>\n  for more info about Parcel.\n</div>\n";
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+document.getElementById("app").innerHTML = "\n<h1>Hello Parcel!</h1>\n<div>\n  Look\n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>\n  for more info about Parcel.\n</div>\n"; //const sayHi = () => { console.log('hi'); }
+//sayHi();
+//const [a, b, c, d] = ['hi', 'niko', 'newItem', 'spreadftw']
+// X const a = newArray[0];
+// X const b = newArray[1]
+
 var newArray = ['hi', 'niko', 'newItem', 'spreadftw'];
 var a = newArray[0],
     b = newArray[1],
-    c = newArray.slice(2); // const a = newArray[0];
-// const b = newArray[1];
+    c = newArray.slice(2); //console.log(c);
 
-console.log(c);
-
-var sayHi = function sayHi() {
-  console.log('hi');
+var person = {
+  name: "Scott",
+  age: 32,
+  job: "web dev"
 };
 
-sayHi();
+var makePerson = function makePerson(name, age, job) {
+  return {
+    name: name,
+    age: age,
+    job: job
+  };
+};
+
+var dev = makePerson('niko', 31, 'web developer'); // X const name = dev.name;
+// X const devName  = dev.name;
+
+var name = dev.name,
+    rest = _objectWithoutProperties(dev, ["name"]);
+
+console.log(name, rest);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -160,7 +182,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59234" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59618" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

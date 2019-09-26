@@ -7,15 +7,32 @@ document.getElementById("app").innerHTML = `
 </div>
 `;
 
+
+//const sayHi = () => { console.log('hi'); }
+//sayHi();
+
+//const [a, b, c, d] = ['hi', 'niko', 'newItem', 'spreadftw']
+// X const a = newArray[0];
+// X const b = newArray[1]
 const newArray = ['hi', 'niko', 'newItem', 'spreadftw']
-
 const [a, b, ...c] = newArray;
+//console.log(c);
 
-// const a = newArray[0];
-// const b = newArray[1];
+const person = {
+  name: "Scott",
+  age: 32,
+  job: "web dev"
+};
+const makePerson = (name, age, job) => {
+  return {
+    name,
+    age,
+    job
+  }
+}
+const dev = makePerson('niko', 31, 'web developer');
+// X const name = dev.name;
+// X const devName  = dev.name;
+const { name, ...rest } = dev;
 
-console.log(c);
-
-const sayHi = () => { console.log('hi'); }
-
-sayHi();
+console.log(name, rest);
