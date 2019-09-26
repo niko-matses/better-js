@@ -118,43 +118,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-document.getElementById("app").innerHTML = "\n<h1>Hello Parcel!</h1>\n<div>\n  Look\n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>\n  for more info about Parcel.\n</div>\n"; //const sayHi = () => { console.log('hi'); }
-//sayHi();
-//const [a, b, c, d] = ['hi', 'niko', 'newItem', 'spreadftw']
-// X const a = newArray[0];
-// X const b = newArray[1]
-
-var newArray = ['hi', 'niko', 'newItem', 'spreadftw'];
-var a = newArray[0],
-    b = newArray[1],
-    c = newArray.slice(2); //console.log(c);
-
-var person = {
-  name: "Scott",
-  age: 32,
-  job: "web dev"
-}; // set values into an object with the same name as the property
-
-var makePerson = function makePerson(name, age, job) {
+// set values into an object with the same name as the parameters
+var makePerson = function makePerson(_ref) {
+  var firstName = _ref.firstName,
+      lastName = _ref.lastName,
+      age = _ref.age,
+      job = _ref.job;
   return {
-    name: name,
+    name: firstName + ' ' + lastName,
     age: age,
-    job: job
+    job: job,
+    lastName: lastName
   };
-}; //pull out individual properties or variables form an object
+};
 
-
-var dev = makePerson('niko', 31, 'web developer'); // X const name = dev.name;
-// X const devName  = dev.name;
-
-var name = dev.name,
-    rest = _objectWithoutProperties(dev, ["name"]);
-
-console.log(name, rest);
+var dev = makePerson({
+  firstName: 'scott',
+  lastName: 'tolinski',
+  age: 32,
+  job: 'webdev'
+});
+console.log(dev);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
