@@ -1,14 +1,38 @@
-document.getElementById("app").innerHTML = `
-<h1>Hello Parcel!</h1>
-<div>
-  Look
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>
-  for more info about Parcel.
-</div>
-`;
+// Generate random color
+// // RGB 0-255
+// Apply to dom
+// update color on event
 
-const heading = document.createElement('h1');
-heading.innerHTML = '<em>Hello from JavaScript</em> ' + document.URL;
-document.body.appendChild(heading);
-console.log(document.URL);
-console.log(heading);
+const generateColorValue = () => Math.floor(Math.random() * 256);
+
+const createColor = () => {
+  const red = generateColorValue();
+  const green = generateColorValue();
+  const blue = generateColorValue();
+  return `rgb(${red}, ${green}, ${blue})`;
+};
+
+const applyColorToBody = color => {
+  return (document.body.style.backgroundColor = color);
+};
+
+const addRandomColorToBg = () => {
+  const color = createColor();
+  return applyColorToBody(color);
+};
+
+addRandomColorToBg();
+
+const newColors = document.getElementById("new-colors");
+newColors.addEventListener("click", addRandomColorToBg);
+
+// Set Interval vs Set Timeout
+// const log = () => console.log("is in timeout");
+// setTimeout(log, 1000);
+// setTimeout(addRandomColorToBg, 5000);
+// Set Timeout, happens once
+
+// Set Interval, happens over and over
+const interval = setInterval(addRandomColorToBg, 2000);
+// Clear interval stops firing
+newColors.addEventListener("click", () => clearInterval(interval));
