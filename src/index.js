@@ -1,14 +1,23 @@
-document.getElementById("app").innerHTML = `
-<h1>Hello Parcel!</h1>
-<div>
-  Look
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>
-  for more info about Parcel.
-</div>
-`;
+// Generate random color
+// RGB 0-255
+// Apply to DOM
+// update color on event
 
-const heading = document.createElement('h1');
-heading.innerHTML = '<em>Hello from JavaScript</em> ' + document.URL;
-document.body.appendChild(heading);
-console.log(document.URL);
-console.log(heading);
+const generateColorValue = () => Math.floor(Math.random() * 256);
+
+const createColor = () => {
+  const red = generateColorValue();
+  const green = generateColorValue();
+  const blue = generateColorValue();
+  return `rgb(${red}, ${green}, ${blue})`
+}
+
+const applyColorToBody = color => {
+  return (document.body.style.backgroundColor = color);
+}
+
+const addRandomColorToBg = () => {
+  const color = createColor();
+  return applyColorToBody(color);
+}
+console.log(addRandomColorToBg());

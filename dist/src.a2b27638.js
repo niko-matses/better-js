@@ -118,12 +118,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-document.getElementById("app").innerHTML = "\n<h1>Hello Parcel!</h1>\n<div>\n  Look\n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>\n  for more info about Parcel.\n</div>\n";
-var heading = document.createElement('h1');
-heading.innerHTML = '<em>Hello from JavaScript</em> ' + document.URL;
-document.body.appendChild(heading);
-console.log(document.URL);
-console.log(heading);
+// Generate random color
+// RGB 0-255
+// Apply to DOM
+// update color on event
+var generateColorValue = function generateColorValue() {
+  return Math.floor(Math.random() * 256);
+};
+
+var createColor = function createColor() {
+  var red = generateColorValue();
+  var green = generateColorValue();
+  var blue = generateColorValue();
+  return "rgb(".concat(red, ", ").concat(green, ", ").concat(blue, ")");
+};
+
+var applyColorToBody = function applyColorToBody(color) {
+  return document.body.style.backgroundColor = color;
+};
+
+var addRandomColorToBg = function addRandomColorToBg() {
+  var color = createColor();
+  return applyColorToBody(color);
+};
+
+console.log(addRandomColorToBg());
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
