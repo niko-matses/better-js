@@ -118,52 +118,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-var cart = ["10", "5", "15"];
-var SHIPPING_COST = 10;
-
-var fakeAPICharge = function fakeAPICharge(total) {
-  return true;
-};
-
-var fakeSendRecipt = function fakeSendRecipt(total) {
-  return true;
-};
-
-var sendRecipt = function sendRecipt(_ref) {
-  var email = _ref.email,
-      total = _ref.total;
-  return fakeSendRecipt({
-    email: email,
-    total: total
-  });
-};
-
-var getSubTotal = function getSubTotal(cart) {
-  return cart.reduce(function (tempTotal, item) {
-    return tempTotal + item;
-  });
-};
-
-var getTotal = function getTotal(subTotal) {
-  return subTotal + SHIPPING_COST;
-};
-
-var checkout = function checkout(cart) {
-  var subTotal = getSubTotal(cart);
-  var total = getTotal(subTotal);
-  var orderSuccess = fakeAPICharge(total);
-
-  if (orderSuccess) {
-    sendRecipt({
-      email: "fakeemail@gmail.com",
-      total: total
-    });
-  }
-
-  return orderSuccess;
-};
-
-checkout(cart);
+document.getElementById("app").innerHTML = "\n<h1>Hello Parcel!</h1>\n<div>\n  Look\n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>\n  for more info about Parcel.\n</div>\n";
+var heading = document.createElement('h1');
+heading.innerHTML = '<em>Hello from JavaScript</em> ' + document.URL;
+document.body.appendChild(heading);
+console.log(document.URL);
+console.log(heading);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
