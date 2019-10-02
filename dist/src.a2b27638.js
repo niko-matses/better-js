@@ -118,67 +118,43 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-// Made up code
-// imported chargeCard
-var chargeCard = function chargeCard() {
-  return new Promise(function (resolve, reject) {
-    // card is valid
-    // reject("fail!!!");
-    if (true) {
-      return resolve(true);
-    }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-    return resolve(false);
-  });
-};
-
-var chargeCC =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(ccNumber) {
-    var res;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return chargeCard(ccNumber);
-
-          case 3:
-            res = _context.sent;
-            console.log(res);
-            return _context.abrupt("return", res);
-
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
-
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 8]]);
-  }));
-
-  return function chargeCC(_x) {
-    return _ref.apply(this, arguments);
-  };
-}(); // Callback hell
-// chargeCard('12341234123', (res) => {
-//   // time to do something
-//   saveToDb(res, () => {
-//     // time to do something else
-//   })
+var simpleShoppingCart = [10, 20, 25, 5, 10];
+var shoppingCart = [{
+  sku: "1234",
+  price: 10,
+  type: "t-shirt"
+}, {
+  sku: "1233334",
+  price: 16,
+  type: "tutorial"
+}, {
+  sku: "12111134",
+  price: 30,
+  type: "tutorial"
+}]; // .map
+// iteratates over array, perform function on each item
+// returns new array
+// Loops through array of numbers and modifies each one
+// const discountCart = simpleShoppingCart.map((value) => {
+//   return value * .75;
 // });
+// const discountCart = simpleShoppingCart.map(value => value * .75);
+// Loops through items in cart, builds object with all properties from
+// cart and then adds a new property with the sales price
+
+var discountCart = shoppingCart.map(function (value) {
+  return _objectSpread({}, value, {
+    salePrice: value.price * 0.75
+  });
+});
+console.log(shoppingCart);
+console.log(discountCart);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
