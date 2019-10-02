@@ -140,10 +140,35 @@ var shoppingCart = [{
 }]; // .map
 // iteratates over array, perform function on each item
 // returns new array
-// Loops through array of numbers and modifies each one
+// returns same amount of items in array
+// .filter
+// iterates over array, determines what is filtered
+// returns new array
+// returns same or less amount of items in array
+// const filteredCart = simpleShoppingCart.filter(value => {
+//   return value <= 10;
+// });
+// const filteredCart = shoppingCart.filter(product => {
+//   return product.type === 't-shirt';
+// });
+// same as above, shortened and destructured
+//const filteredCart = shoppingCart.filter(({ type }) => type === 't-shirt');
+// applying map to a filter on a filter
+
+var filteredCart = shoppingCart.filter(function (_ref) {
+  var type = _ref.type;
+  return type === 'tutorial';
+}).filter(function (product) {
+  return product.price > 20;
+}).map(function (product) {
+  return _objectSpread({}, product, {
+    extra: product.price * 10
+  });
+}); // Loops through array of numbers and modifies each one
 // const discountCart = simpleShoppingCart.map((value) => {
 //   return value * .75;
 // });
+// same as above, destructured
 // const discountCart = simpleShoppingCart.map(value => value * .75);
 // Loops through items in cart, builds object with all properties from
 // cart and then adds a new property with the sales price
@@ -153,8 +178,8 @@ var discountCart = shoppingCart.map(function (value) {
     salePrice: value.price * 0.75
   });
 });
-console.log(shoppingCart);
-console.log(discountCart);
+console.log(simpleShoppingCart);
+console.log(filteredCart);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
