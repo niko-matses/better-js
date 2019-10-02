@@ -118,6 +118,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var simpleShoppingCart = [10, 20, 25, 5, 10];
 var shoppingCart = [{
   sku: "1234",
@@ -134,40 +140,41 @@ var shoppingCart = [{
 }]; // .map
 // iteratates over array, perform function on each item
 // returns new array
-// returns same amount of items in array
+// returns same amount of items array
 // .filter
-// iterates over array, determines what is filtered
+// iterates over array, determines what is filtered,
 // returns new array
 // returns same or less amount of items in array
 // .reduce
-// iterates over array, uses values to output one value
+// iterates over array, uses values, to output one value
 // outputs single value
-// const filteredCart = simpleShoppingCart.filter(value => {
-//   return value <= 10;
-// });
-
-var filteredCart = shoppingCart.filter(function (product) {
-  return product.type === 'tutorial';
-}); // same as above, shortened and destructured
-//const filteredCart = shoppingCart.filter(({ type }) => type === 't-shirt');
 // Loops through array of numbers and modifies each one
 // const discountCart = simpleShoppingCart.map((value) => {
 //   return value * .75;
 // });
-// same as above, destructured
 // const discountCart = simpleShoppingCart.map(value => value * .75);
 // Loops through items in cart, builds object with all properties from
 // cart and then adds a new property with the sales price
-// const discountCart = shoppingCart.map(value => {
-//   return {
-//     ...value,
-//     salePrice: value.price * 0.75
-//   };
+
+var discountCart = shoppingCart.map(function (value) {
+  return _objectSpread({}, value, {
+    salePrice: value.price * 0.75
+  });
+}); // const filteredCart = simpleShoppingCart.filter(value => {
+//   return value <= 10;
 // });
+
+var filteredCart = shoppingCart.filter(function (product) {
+  return product.type === "tutorial";
+}); // const filteredCart = shoppingCart.filter(({type}) => type === 'tutorial');
 
 var total = simpleShoppingCart.reduce(function (total, currentPrice) {
   return total + currentPrice;
-});
+}); // [...simpleShoppingCart]
+// using the spread operator would be the same as
+// simpleShoppingCart.slice().reverse
+
+console.log([].concat(simpleShoppingCart).reverse());
 console.log(simpleShoppingCart);
 console.log(total);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
