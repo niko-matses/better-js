@@ -28,23 +28,21 @@ const shoppingCart = [
 // returns new array
 // returns same or less amount of items in array
 
+// .reduce
+// iterates over array, uses values to output one value
+// outputs single value
+
+
 // const filteredCart = simpleShoppingCart.filter(value => {
 //   return value <= 10;
 // });
 
-// const filteredCart = shoppingCart.filter(product => {
-//   return product.type === 't-shirt';
-// });
+const filteredCart = shoppingCart.filter(product => {
+  return product.type === 'tutorial';
+});
 
 // same as above, shortened and destructured
 //const filteredCart = shoppingCart.filter(({ type }) => type === 't-shirt');
-
-// applying map to a filter on a filter
-const filteredCart = shoppingCart.filter(({ type }) => {
-  return type === 'tutorial';
-}).filter(product => {
-  return product.price > 20;
-}).map(product => ({ ...product, extra: product.price * 10 }));
 
 // Loops through array of numbers and modifies each one
 // const discountCart = simpleShoppingCart.map((value) => {
@@ -56,12 +54,16 @@ const filteredCart = shoppingCart.filter(({ type }) => {
 // Loops through items in cart, builds object with all properties from
 // cart and then adds a new property with the sales price
 
-const discountCart = shoppingCart.map(value => {
-  return {
-    ...value,
-    salePrice: value.price * 0.75
-  };
+// const discountCart = shoppingCart.map(value => {
+//   return {
+//     ...value,
+//     salePrice: value.price * 0.75
+//   };
+// });
+
+const total = simpleShoppingCart.reduce((total, currentPrice) => {
+  return total + currentPrice;
 });
 
 console.log(simpleShoppingCart);
-console.log(filteredCart);
+console.log(total);
