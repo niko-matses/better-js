@@ -118,65 +118,86 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var simpleShoppingCart = [10, 20, 25, 5, 10];
-var shoppingCart = [{
-  sku: "1234",
-  price: 10,
-  type: "t-shirt"
-}, {
-  sku: "1233334",
-  price: 16,
-  type: "tutorial"
-}, {
-  sku: "12111134",
-  price: 30,
-  type: "tutorial"
-}]; // .map
-// iteratates over array, perform function on each item
-// returns new array
-// returns same amount of items array
-// .filter
-// iterates over array, determines what is filtered,
-// returns new array
-// returns same or less amount of items in array
-// .reduce
-// iterates over array, uses values, to output one value
-// outputs single value
-// Loops through array of numbers and modifies each one
-// const discountCart = simpleShoppingCart.map((value) => {
-//   return value * .75;
-// });
-// const discountCart = simpleShoppingCart.map(value => value * .75);
-// Loops through items in cart, builds object with all properties from
-// cart and then adds a new property with the sales price
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-var discountCart = shoppingCart.map(function (value) {
-  return _objectSpread({}, value, {
-    salePrice: value.price * 0.75
-  });
-}); // const filteredCart = simpleShoppingCart.filter(value => {
-//   return value <= 10;
-// });
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var filteredCart = shoppingCart.filter(function (product) {
-  return product.type === "tutorial";
-}); // const filteredCart = shoppingCart.filter(({type}) => type === 'tutorial');
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var total = simpleShoppingCart.reduce(function (total, currentPrice) {
-  return total + currentPrice;
-}); // [...simpleShoppingCart]
-// using the spread operator would be the same as
-// simpleShoppingCart.slice().reverse
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-console.log([].concat(simpleShoppingCart).reverse());
-console.log(simpleShoppingCart);
-console.log(total);
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Team = function Team(name) {
+  _classCallCheck(this, Team);
+
+  this.name = name;
+};
+
+var HockeyTeam =
+/*#__PURE__*/
+function (_Team) {
+  _inherits(HockeyTeam, _Team);
+
+  function HockeyTeam(name) {
+    var _this;
+
+    _classCallCheck(this, HockeyTeam);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HockeyTeam).call(this, name));
+    _this.type = 'Hockey';
+    return _this;
+  }
+
+  _createClass(HockeyTeam, [{
+    key: "scoreGoal",
+    value: function scoreGoal() {
+      console.log('he shoots, he scores');
+    }
+  }]);
+
+  return HockeyTeam;
+}(Team);
+
+var FootballTeam =
+/*#__PURE__*/
+function (_Team2) {
+  _inherits(FootballTeam, _Team2);
+
+  function FootballTeam(name) {
+    var _this2;
+
+    _classCallCheck(this, FootballTeam);
+
+    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(FootballTeam).call(this, name));
+    _this2.type = 'Football';
+    return _this2;
+  }
+
+  _createClass(FootballTeam, [{
+    key: "touchdown",
+    value: function touchdown() {
+      console.log('Go for two!');
+    }
+  }]);
+
+  return FootballTeam;
+}(Team); // this instance takes on all the properties of the above class
+
+
+var wings = new HockeyTeam('Red Wings');
+var lions = new FootballTeam('Lions');
+wings.scoreGoal();
+lions.touchdown();
+console.log(wings, lions);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -205,7 +226,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58519" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49729" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
